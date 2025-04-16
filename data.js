@@ -336,8 +336,8 @@ export const data = [
       },
     ],
   },
-];
+]
 
 export const getData = async function () {
-  return data;
-};
+  return data
+}
