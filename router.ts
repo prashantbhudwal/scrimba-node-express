@@ -2,7 +2,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 
 type RouteHandler = (
   req: IncomingMessage,
-  res: ServerResponse
+  res: ServerResponse,
 ) => Promise<void> | void
 
 export const routes: Record<string, RouteHandler> = {

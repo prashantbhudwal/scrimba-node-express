@@ -8,7 +8,7 @@ type LocationType = 'country' | 'continent'
 export const getDataByPathParams = (
   data: Destination[],
   locationType: LocationType,
-  locationName: string
+  locationName: string,
 ): Destination[] => {
   const normalizedLocation = locationName.toLowerCase()
 
@@ -20,7 +20,7 @@ export const getDataByPathParams = (
 export const sendJSONResponse = (
   res: ServerResponse,
   statusCode: number,
-  payload: unknown
+  payload: unknown,
 ) => {
   res.setHeader('Content-Type', 'application/json')
   res.statusCode = statusCode
@@ -40,14 +40,17 @@ const buildUrl = (req: IncomingMessage): URL => {
 
 const handleRequest = async (
   req: IncomingMessage,
-  res: ServerResponse
+  res: ServerResponse,
 ): Promise<void> => {
   const destinations = await getData()
   const urlObj = buildUrl(req)
   const pathname = urlObj.pathname
   const method = req.method ?? 'GET'
   const pathSegments = pathname.split('/').filter(Boolean)
-  const queryObj = Object.fromEntries(urlObj.searchParams) as Record<string, string>
+  const queryObj = Object.fromEntries(urlObj.searchParams) as Record<
+    string,
+    string
+  >
 
   console.log(urlObj)
   console.log(queryObj)
@@ -66,7 +69,7 @@ const handleRequest = async (
     const filteredData = getDataByPathParams(
       destinations,
       'continent',
-      pathSegments[2]
+      pathSegments[2],
     )
     sendJSONResponse(res, 200, filteredData)
     return
@@ -81,7 +84,7 @@ const handleRequest = async (
     const filteredData = getDataByPathParams(
       destinations,
       'country',
-      pathSegments[2]
+      pathSegments[2],
     )
     sendJSONResponse(res, 200, filteredData)
     return
