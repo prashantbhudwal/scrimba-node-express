@@ -2,22 +2,28 @@
   "name": "scrimba-node-express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "lint": "eslint ."
+    "build": "tsc",
+    "start": "nodemon --watch './**/*.ts' --exec \"node --loader ts-node/esm\" index.ts",
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "devDependencies": {
-    "@eslint/js": "^9.24.0",
-    "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.2",
-    "globals": "^16.0.0",
-    "nodemon": "^3.1.9"
+    "@eslint/js": "^9.39.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "@types/node": "^24.10.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

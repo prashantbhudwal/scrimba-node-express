@@ -1,4 +1,19 @@
-export const data = [
+export type DestinationDetail = {
+  fun_fact?: string
+  description?: string
+}
+
+export interface Destination {
+  name: string
+  location: string
+  country: string
+  continent: string
+  is_open_to_public: boolean
+  uuid: string
+  details: DestinationDetail[]
+}
+
+export const data: Destination[] = [
   {
     name: "Waitomo Glowworm Caves",
     location: "Waitomo",
@@ -338,6 +353,6 @@ export const data = [
   },
 ]
 
-export const getData = async function () {
-  return data
+export const getData = function (): Promise<Destination[]> {
+  return Promise.resolve(data)
 }
